@@ -4,38 +4,6 @@ This repo contains my personal configuration managed with `chezmoi`.
 
 It includes a small set of dotfiles for a more usable terminal experience, a few handy aliases, and helper functions for secrets and access workflows used in my environment.
 
-## Included config files
-
-- `dot_zshrc`  
-  Shell startup config for zsh, including:
-  - oh-my-zsh setup
-  - `zoxide` integration for smarter `cd`
-  - `nvm` initialization
-  - PATH updates
-  - sourcing of the Ubuntu helper script
-
-- `dot_aliases`  
-  Common shell aliases for:
-  - directory navigation
-  - listing files
-  - SSH shortcuts to internal hosts
-  - `juju` status shortcuts
-  - `kubectl` conveniences
-
-- `dot_gitconfig`  
-  Git settings for default branch naming, pull behavior, editor preferences, and common aliases.
-
-- `dot_gitignore_global`  
-  Global ignore rules used across repositories.
-
-- `dot_ubuntu_helper`  
-  Ubuntu-specific helper functions for:
-  - fetching secrets from the system keyring
-  - copying LDAP passwords to the clipboard
-  - `vault` login flows
-  - `juju` login setup
-  - Landscape API environment exports
-
 
 ## Applying the dotfiles
 
