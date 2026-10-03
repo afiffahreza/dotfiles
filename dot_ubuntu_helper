@@ -34,8 +34,10 @@ vault7() {
 
 jaas7() {
     vault7
-    export JUJU_CLIENT_ID="$(vault kv get -field client_id admin/jaas-service-account-cidp)"                  
-    export JUJU_CLIENT_SECRET="$(vault kv get -field client_secret admin/jaas-service-account-cidp)"
+    local vault_path
+    vault_path=$(get_keyring_secret vault jaas7-cidp-path)
+    export JUJU_CLIENT_ID="$(vault kv get -field client_id "$vault_path")"
+    export JUJU_CLIENT_SECRET="$(vault kv get -field client_secret "$vault_path")"
     juju login -c jaas-ps7
 }
 
