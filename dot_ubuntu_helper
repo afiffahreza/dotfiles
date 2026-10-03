@@ -1,0 +1,48 @@
+get_keyring_secret() {
+    local service="$1"
+    local username="$2"
+    local secret
+    
+    secret=$(keyring get "$service" "$username" 2>/dev/null)
+    
+    if [ -z "$secret" ]; then
+        echo "⚠️  Warning: Secret not found in keyring for [ $service : $username ]" >&2
+    else
+        echo "$secret"
+    fi
+}
+
+get-ldap-pw() {
+    local pw
+    pw=$(get_keyring_secret service sudo-ldap)
+    
+    if [ -n "$pw" ]; then
+        echo -n "$pw" | xclip -selection primary -f | xclip -selection clipboard
+    fi
+}
+
+vault5() {
+    export VAULT_ADDR=$(get_keyring_secret urls VAULT_ADDR_PS5)
+    get-ldap-pw
+    vault login -method=ldap username=afiffahreza
+}
+
+vault7() {
+    export VAULT_ADDR=$(get_keyring_secret urls VAULT_ADDR_PS7)
+    vault login -method=oidc
+}
+
+jaas7() {
+    vault7
+    export JUJU_CLIENT_ID="$(vault kv get -field client_id admin/jaas-service-account-cidp)"                  
+    export JUJU_CLIENT_SECRET="$(vault kv get -field client_secret admin/jaas-service-account-cidp)"
+    juju login -c jaas-ps7
+}
+
+landscape() {
+    export LANDSCAPE_API_URI=$(get_keyring_secret urls LANDSCAPE_API_URI)
+    export LANDSCAPE_API_KEY=$(get_keyring_secret landscape api-key)
+    export LANDSCAPE_API_SECRET=$(get_keyring_secret landscape api-secret)
+}
+
+alias pe='get-ldap-pw; pe'

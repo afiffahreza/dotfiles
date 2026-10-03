@@ -1,0 +1,23 @@
+alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias cl='clear'
+
+alias ps5='ssh is-bastion-ps5.internal'
+alias ps6='ssh is-bastion-ps6.internal'
+alias ps7='ssh is-bastion-ps7.internal'
+alias ps8='ssh is-bastion-ps8.internal'
+alias il3='ssh is-bastion-il3-not-ps5.internal'
+
+alias jsft='juju status --format=tabular'
+alias js='juju status'
+
+alias k='kubectl'
+alias kg='kubectl get'
+alias kd='kubectl describe'
