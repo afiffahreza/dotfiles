@@ -14,6 +14,7 @@ alias ps6='ssh is-bastion-ps6.internal'
 alias ps7='ssh is-bastion-ps7.internal'
 alias ps8='ssh is-bastion-ps8.internal'
 alias il3='ssh is-bastion-il3-not-ps5.internal'
+alias ic7='ssh is-bastion-ic7.internal'
 
 alias jsft='juju status --format=tabular'
 alias js='juju status'
